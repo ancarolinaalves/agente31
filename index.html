@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dossiê do Agente 31</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  body {
+    background-color: #0b0f14;
+    color: #39ff14;
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 600px;
+    background: #121a24;
+    border: 2px solid #39ff14;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 0 15px #39ff14aa;
+  }
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  .lock {
+    font-weight: bold;
+    color: #ff3939;
+  }
+  label {
+    display: block;
+    margin: 20px 0 10px;
+    font-weight: bold;
+  }
+  input[type="text"] {
+    width: 100%;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border: 2px solid #39ff14;
+    border-radius: 5px;
+    background: #0b0f14;
+    color: #39ff14;
+    outline: none;
+  }
+  input[type="text"]:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 8px #00ff00;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    background: #39ff14;
+    border: none;
+    border-radius: 5px;
+    color: #0b0f14;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #00cc00;
+  }
+  .error {
+    color: #ff3939;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .hidden {
+    display: none;
+  }
+  pre {
+    white-space: pre-wrap;
+    font-size: 1.1rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="page1">
+  <h1>Dossiê do Agente 31 <span class="lock">🔒 Classificação: ULTRA SECRETA</span></h1>
+  <p>Houve tentativa de hacker os sistemas e precisamos de confirmar a identidade da nossa agente.</p>
+  <p>Vamos fazer de seguida uma pergunta que só a própria pode responder.</p>
+  <label for="answer">Qual o sabor do bolo de aniversário?</label>
+  <input type="text" id="answer" autocomplete="off" />
+  <button id="submitBtn">Confirmar identidade</button>
+  <p class="error hidden" id="errorMsg">Resposta incorreta. Tenta outra vez.</p>
+</div>
+
+<div class="container hidden" id="page2">
+  <pre>
+IDENTIDADE CONFIRMADA: Filipa Alves
+IDADE: 31 ciclos solares
+STATUS EMOCIONAL: Altamente adorada
+
+HABILIDADES:
+- Descodificação de afetos
+- Resgate de sorrisos
+- Infiltração em corações
+
+AVALIAÇÃO DA MISSÃO:
+És absolutamente essencial para esta equipa.
+Hoje celebramos a tua missão mais importante: Ser feliz!
+
+Assinado,
+Comando Central da Agência F.A.M.I.L.I.A
+  </pre>
+</div>
+
+<script>
+  const submitBtn = document.getElementById('submitBtn');
+  const answerInput = document.getElementById('answer');
+  const errorMsg = document.getElementById('errorMsg');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+
+  submitBtn.addEventListener('click', () => {
+    const answer = answerInput.value.trim().toUpperCase();
+    if (answer === 'TIRAMISU') {
+      // Resposta correta, mostra página 2
+      page1.classList.add('hidden');
+      page2.classList.remove('hidden');
+    } else {
+      errorMsg.classList.remove('hidden');
+      answerInput.focus();
+    }
+  });
+
+  answerInput.addEventListener('input', () => {
+    if (!errorMsg.classList.contains('hidden')) {
+      errorMsg.classList.add('hidden');
+    }
+  });
+
+  // Permite pressionar Enter para submeter
+  answerInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      submitBtn.click();
+    }
+  });
+</script>
+
+</body>
+</html>
+Adiciona index.html
